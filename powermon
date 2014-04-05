@@ -10,11 +10,11 @@ function progressbar(size, cur, max, char)
         local xpos,ypos = term.getCursorPos()
 
 		print("[")
-		term.setCursorPos(xpos+size, ypos)
+		term.setCursorPos(xpos+size-1, ypos)
 		print("]")
 		fract = cur / max
 		len = math.ceil( (size-2) * fract)
-		start = xpos+1
+		start = xpos
 		for i = 1, len do
 			start = start + 1
 			term.setCursorPos(start, ypos)
