@@ -1,5 +1,5 @@
-local inp  = "top"
-local outp = "left"
+local inp  = "right"
+local outp = "bottom"
  
 local power = 0
 local powerMax = 0
@@ -9,13 +9,13 @@ function progressbar(size, cur, max, char)
         char = char or "#"
         local xpos,ypos = term.getCursorPos()
 
-		print("["])
+		print("[")
 		term.setCursorPos(xpos+size+1, ypos)
-		print("]"])
+		print("]")
 		fract = cur / max
 		len = math.ceil(size * fract)
 		start = xpos
-		for i = 1, i < len do
+		for i = 1, len do
 			start = start + 1
 			term.setCursorPos(start, ypos)
 			print(char)
@@ -26,8 +26,8 @@ rednet.open(inp)
 battery = peripheral.wrap(outp)
 while true do
  
-  power = battery.getEnergyStored()
-  powerMax = battery.getMaxEnergyStored()
+  power = battery.getEnergyStored("foo")
+  powerMax = battery.getMaxEnergyStored("foo")
  
   term.clear()
   term.setCursorPos(1,1)
@@ -37,7 +37,8 @@ while true do
   print("    Power stored:   " .. power )
   print("    Power capacity: " .. powerMax)
  
- 
+  progressbar(20, power, powerMax, ">")
+  
   id, message = rednet.receive(looptime)
 
   if message == "power" then
