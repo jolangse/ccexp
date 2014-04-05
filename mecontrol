@@ -33,6 +33,16 @@ limit["wool"]["current"] = me.countOfItemType(limit["wool"]["id"],0)
 
 for item, data in pairs(limit) do
   print("Processing " .. item)
+  local current = limit[item]["current"]
+  local max = limit[item]["max"]
+  print("Has " .. current .. ", want " .. max)
+  if current < max then
+    print("Requesting production")
+	rednet.send(limit[item]["controller"], "run--")
+  else
+    print("Stopping production")
+	rednet.send(limit[item]["controller"], "stop--")
+  end	
 end
 
 
