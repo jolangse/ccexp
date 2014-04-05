@@ -8,22 +8,22 @@ limit["potato"]["controller"] = 178
 
 limit["carrot"] = {}
 limit["carrot"]["id"] = 391
-limit["carrot"]["max"] = 512
+limit["carrot"]["max"] = 2000
 limit["carrot"]["controller"] = 179
 
 limit["wheat"] = {}
 limit["wheat"]["id"] = 296
-limit["wheat"]["max"] = 512
+limit["wheat"]["max"] = 2000
 limit["wheat"]["controller"] = 177
 
 limit["leather"] = {}
 limit["leather"]["id"] = 334
-limit["leather"]["max"] = 512
-limit["leather"]["controller"] = 181
+limit["leather"]["max"] = 2000
+limit["leather"]["controller"] = 182
 
 limit["wool"] = {}
 limit["wool"]["id"] = 35
-limit["wool"]["max"] = 512
+limit["wool"]["max"] = 2000
 limit["wool"]["controller"] = 180
 
 while true do
