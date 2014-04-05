@@ -10,11 +10,11 @@ function progressbar(size, cur, max, char)
         local xpos,ypos = term.getCursorPos()
 
 		print("[")
-		term.setCursorPos(xpos+size+1, ypos)
+		term.setCursorPos(xpos+size, ypos)
 		print("]")
 		fract = cur / max
-		len = math.ceil(size * fract)
-		start = xpos
+		len = math.ceil( (size-2) * fract)
+		start = xpos+1
 		for i = 1, len do
 			start = start + 1
 			term.setCursorPos(start, ypos)
@@ -37,6 +37,7 @@ while true do
   print("    Power stored:   " .. power )
   print("    Power capacity: " .. powerMax)
  
+  term.setCursorPos(5, 7)
   progressbar(20, power, powerMax, ">")
   
   id, message = rednet.receive(looptime)
