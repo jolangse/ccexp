@@ -5,7 +5,12 @@ limit["potato"] = {}
 limit["potato"]["id"] = 392
 limit["potato"]["max"] = 512
 limit["potato"]["controller"] = 178
-limit["potato"]["current"] = me.countOfItemType(limit[potato][id],0)
+limit["potato"]["current"] = me.countOfItemType(limit["potato"]["id"],0)
+
+for item, data in pairs(limit) do
+  print("Processing " .. item)
+end
+
 
 -- nCarrot  = me.countOfItemType(391,0) (179)
 -- nWheat   = me.countOfItemType(296,0) (177)
