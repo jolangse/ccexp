@@ -46,7 +46,7 @@ while true do
     rednet.send(id, power)
  
   elseif message == "powermax" then
-    rednet.send(id, powermax)
+    rednet.send(id, powerMax)
  
   end
    

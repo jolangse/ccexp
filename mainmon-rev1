@@ -17,12 +17,20 @@ end
 
 rednet.open("top")
 
-send(183, "power")
+rednet.send(183, "power")
 id, plvl = rednet.receive(1)
-send(183, "powermax")
+
+os.sleep(1) -- Slow down, let it keep up...
+
+rednet.send(183, "powermax")
 id, pmax = rednet.receive(1)
+
 print("Main battery state:")
-pct = plvl * 100 / pmax
-progressbar(20, plvl, pmax)
-print(" " .. pct "%")
+if plvl and pmax then
+  pct = math.ceil(plvl * 100 / pmax)
+  local xpos,ypos = term.getCursorPos()
+  progressbar(20, plvl, pmax)
+  term.setCursorPos(xpos, ypos+21)
+  print(" " .. pct "%")
+end
 
