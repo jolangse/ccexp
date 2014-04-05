@@ -7,16 +7,34 @@ limit["potato"]["max"] = 512
 limit["potato"]["controller"] = 178
 limit["potato"]["current"] = me.countOfItemType(limit["potato"]["id"],0)
 
+limit["carrot"] = {}
+limit["carrot"]["id"] = 391
+limit["carrot"]["max"] = 512
+limit["carrot"]["controller"] = 179
+limit["carrot"]["current"] = me.countOfItemType(limit["carrot"]["id"],0)
+
+limit["wheat"] = {}
+limit["wheat"]["id"] = 296
+limit["wheat"]["max"] = 512
+limit["wheat"]["controller"] = 177
+limit["wheat"]["current"] = me.countOfItemType(limit["wheat"]["id"],0)
+
+limit["leather"] = {}
+limit["leather"]["id"] = 334
+limit["leather"]["max"] = 512
+limit["leather"]["controller"] = 181
+limit["leather"]["current"] = me.countOfItemType(limit["leather"]["id"],0)
+
+limit["wool"] = {}
+limit["wool"]["id"] = 35
+limit["wool"]["max"] = 512
+limit["wool"]["controller"] = 180
+limit["wool"]["current"] = me.countOfItemType(limit["wool"]["id"],0)
+
 for item, data in pairs(limit) do
   print("Processing " .. item)
 end
 
-
--- nCarrot  = me.countOfItemType(391,0) (179)
--- nWheat   = me.countOfItemType(296,0) (177)
--- nLeather = me.countOfItemType(334,0)
--- nRawBeef = me.countOfItemType(363,0)
--- nWool    = me.countOfItemType(35,0)
 
 
 
