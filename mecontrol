@@ -1,14 +1,14 @@
-me = peripheral.wrap("bottom)
+me = peripheral.wrap("bottom")
 
 limit = {}
-limit[potato] = {}
-limit[potato][id] = 392
-limit[potato][max] = 512
-limit[potato][controller] = 178
-limit[potato][current] = me.countOfItemType(limit[potato][id],0)
+limit["potato"] = {}
+limit["potato"]["id"] = 392
+limit["potato"]["max"] = 512
+limit["potato"]["controller"] = 178
+limit["potato"]["current"] = me.countOfItemType(limit[potato][id],0)
 
--- nCarrot  = me.countOfItemType(391,0)
--- nWheat   = me.countOfItemType(296,0)
+-- nCarrot  = me.countOfItemType(391,0) (179)
+-- nWheat   = me.countOfItemType(296,0) (177)
 -- nLeather = me.countOfItemType(334,0)
 -- nRawBeef = me.countOfItemType(363,0)
 -- nWool    = me.countOfItemType(35,0)
