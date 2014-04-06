@@ -36,25 +36,18 @@ monitor = peripheral.wrap("left")
 monitor.setBackgroundColor(colors.blue)
 monitor.setTextScale(0.5)
 monitor.clear()
-monitor.setCursorPost(4,2)
+monitor.setCursorPos(4,2)
 monitor.write("jolangse inc systems monitor")
 
 rednet.open("top")
 
-rednet.send(183, "power")
-id, plvl = rednet.receive(1)
-
-os.sleep(1) -- Slow down, let it keep up...
-
-rednet.send(183, "powermax")
-id, pmax = rednet.receive(1)
-
+rednet.send(183, "powerpct")
+id, pct = rednet.receive(1)
+monitor.setCursorPos(2,4)
 monitor.write("Main battery state:")
-if plvl and pmax then
-  pct = math.ceil(plvl * 100 / pmax)
-  local xpos,ypos = monitor.getCursorPos()
-  mprogressbar(monitor, 20, plvl, pmax)
-  monitor.setCursorPos(xpos+21, ypos)
-  print(" " .. pct .. "%")
-end
+monitor.setCursorPos(2,5)
+mprogressbar(monitor, 20, pct, 100)
+monitor.setCursorPos(23, 5)
+monitor.write(" " .. pct .. "%")
+print("Main battery is at " .. pct .. "%")
 

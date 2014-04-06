@@ -47,6 +47,11 @@ while true do
  
   elseif message == "powermax" then
     rednet.send(id, powerMax)
+	
+  elseif message == "powerpct" then
+    pct = math.ceil(power * 100 / powerMax)
+    rednet.send(id, pct)
+ 
  
   end
    
