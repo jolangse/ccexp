@@ -44,7 +44,7 @@ while true do
         rednet.send(limit[item]["controller"], "stop")
     end
   end
-  id, message = rednet.recieve(10)
+  id, message = rednet.receive(10)
   power = me.getEnergyStored("foo")
   powerMax = me.getMaxEnergyStored("foo")
   pct = math.ceil(power * 100 / powerMax)

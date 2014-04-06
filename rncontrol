@@ -1,0 +1,47 @@
+local inp  = "top"
+local outp = "left"
+local run = false
+ 
+local power = 0
+local powerMax = 0
+local looptime = 30
+ 
+rednet.open(inp)
+mfr = peripheral.wrap(outp)
+while true do
+ 
+  redstone.setOutput(outp, not run)
+  power = mfr.getEnergy()
+  powerMax = mfr.getMaxEnergy()
+ 
+  term.clear()
+  term.setCursorPos(1,1)
+  print(">> Production Controller")
+  print("-> Node ID " .. os.getComputerID() )
+  print()
+  local state
+  if run then state = "Running" else state = "Stopped" end
+  print("    Running state:    " .. state )
+  print("    Device power:     " .. power )
+  print("    Device max power: " .. powerMax)
+ 
+ 
+  id, message = rednet.receive(looptime)
+   
+  if message == "stop" then
+    run = false
+   
+  elseif message == "run" then
+    run = true
+   
+  elseif message == "power" then
+    rednet.send(id, power)
+
+  elseif message == "state" then
+    local state
+    if run then state = 1 else state = 0 end
+    rednet.send(id, state)
+ 
+  end
+   
+end
