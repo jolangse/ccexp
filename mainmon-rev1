@@ -90,37 +90,37 @@ print("ME Stored energy is at " .. pct .. "%")
 
 rednet.send(179, "state")
 id,state = rednet.receive(1)
-monitor.setCursorPos(2, 12)
-if state then monitor.setBackgroundColor(colors.green) else monitor.setBackgroundColor(colors.red) end
-monitor.write("Carrots")
+monitor.setCursorPos(2, 15)
+if state ==1 then monitor.setBackgroundColor(colors.green) else monitor.setBackgroundColor(colors.red) end
+monitor.write(" Carrots ")
 monitor.setBackgroundColor(colors.blue)
 
 rednet.send(178, "state")
 id,state = rednet.receive(1)
-monitor.setCursorPos(2+8, 12)
-if state then monitor.setBackgroundColor(colors.green) else monitor.setBackgroundColor(colors.red) end
-monitor.write("Potato ")
+monitor.setCursorPos(22, 15)
+if state ==1 then monitor.setBackgroundColor(colors.green) else monitor.setBackgroundColor(colors.red) end
+monitor.write(" Potato  ")
 monitor.setBackgroundColor(colors.blue)
 
 rednet.send(177, "state")
 id,state = rednet.receive(1)
-monitor.setCursorPos(2+16, 12)
-if state then monitor.setBackgroundColor(colors.green) else monitor.setBackgroundColor(colors.red) end
-monitor.write("Wheat  ")
+monitor.setCursorPos(32, 15)
+if state ==1 then monitor.setBackgroundColor(colors.green) else monitor.setBackgroundColor(colors.red) end
+monitor.write(" Wheat   ")
 monitor.setBackgroundColor(colors.blue)
 
 rednet.send(182, "state")
 id,state = rednet.receive(1)
-monitor.setCursorPos(2, 13)
-if state then monitor.setBackgroundColor(colors.green) else monitor.setBackgroundColor(colors.red) end
-monitor.write("Leather")
+monitor.setCursorPos(42, 15)
+if state ==1 then monitor.setBackgroundColor(colors.green) else monitor.setBackgroundColor(colors.red) end
+monitor.write(" Leather ")
 monitor.setBackgroundColor(colors.blue)
 
 rednet.send(180, "state")
 id,state = rednet.receive(1)
-monitor.setCursorPos(2+8, 13)
-if state then monitor.setBackgroundColor(colors.green) else monitor.setBackgroundColor(colors.red) end
-monitor.write("Wool   ")
+monitor.setCursorPos(2, 16)
+if state ==1 then monitor.setBackgroundColor(colors.green) else monitor.setBackgroundColor(colors.red) end
+monitor.write(" Wool    ")
 monitor.setBackgroundColor(colors.blue)
 
 
