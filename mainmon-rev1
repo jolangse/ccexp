@@ -1,25 +1,25 @@
 function mprogressbar(mon, size, cur, max, char)
-        char = char or "#"
+        char = char or " "
         local xpos,ypos = mon.getCursorPos()
 
 		mon.write("[")
-		term.setBackgroundColor(colors.red)
-		for i = 1, size do
-		  print(" ")
+		mon.setBackgroundColor(colors.red)
+		for i = 1, size-2 do
+		  mon.write(" ")
 		end
-		term.setBackgroundColor(colors.blue)
+		mon.setBackgroundColor(colors.blue)
 		mon.setCursorPos(xpos+size-1, ypos)
 		mon.write("]")
 		fract = cur / max
 		len = math.ceil( (size-2) * fract)
 		start = xpos
-		term.setBackgroundColor(colors.green)
+		mon.setBackgroundColor(colors.green)
 		for i = 1, len do
 			start = start + 1
 			mon.setCursorPos(start, ypos)
 			mon.write(char)
 		end
-		term.setBackgroundColor(colors.blue)
+		mon.setBackgroundColor(colors.blue)
 end 
 
 function progressbar(size, cur, max, char)
@@ -88,13 +88,40 @@ monitor.setCursorPos(23, 7)
 monitor.write(" " .. pct .. "%")
 print("ME Stored energy is at " .. pct .. "%")
 
-rednet.send(178, "state")
+rednet.send(179, "state")
 id,state = rednet.receive(1)
 monitor.setCursorPos(2, 12)
-monitor.write("Carrots " .. state)
+if state then monitor.setBackgroundColor(colors.green) else monitor.setBackgroundColor(colors.red) end
+monitor.write("Carrots")
+monitor.setBackgroundColor(colors.blue)
 
+rednet.send(178, "state")
+id,state = rednet.receive(1)
+monitor.setCursorPos(2+8, 12)
+if state then monitor.setBackgroundColor(colors.green) else monitor.setBackgroundColor(colors.red) end
+monitor.write("Potato ")
+monitor.setBackgroundColor(colors.blue)
 
+rednet.send(177, "state")
+id,state = rednet.receive(1)
+monitor.setCursorPos(2+16, 12)
+if state then monitor.setBackgroundColor(colors.green) else monitor.setBackgroundColor(colors.red) end
+monitor.write("Wheat  ")
+monitor.setBackgroundColor(colors.blue)
 
+rednet.send(182, "state")
+id,state = rednet.receive(1)
+monitor.setCursorPos(2, 13)
+if state then monitor.setBackgroundColor(colors.green) else monitor.setBackgroundColor(colors.red) end
+monitor.write("Leather")
+monitor.setBackgroundColor(colors.blue)
+
+rednet.send(180, "state")
+id,state = rednet.receive(1)
+monitor.setCursorPos(2+8, 13)
+if state then monitor.setBackgroundColor(colors.green) else monitor.setBackgroundColor(colors.red) end
+monitor.write("Wool   ")
+monitor.setBackgroundColor(colors.blue)
 
 
 -- limit["potato"]["controller"] = 178
