@@ -57,6 +57,15 @@ while true do
   
   elseif message == "powerpct" then
     rednet.send(id, pct)
-  
+
+  elseif message == "bytespct" then
+    used = me.getTotalBytes() - me.getFreeBytes()
+	pct = used * 100 / me.getTotalBytes()
+    rednet.send(id, pct)
+
+  elseif message == "typespct" then
+	pct = me.getStoredItemTypes() * 100 / me.getTotalItemTypes()
+    rednet.send(id, pct)
+
   end 
 end
