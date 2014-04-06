@@ -1,3 +1,20 @@
+function mprogressbar(mon, size, cur, max, char)
+        char = char or "#"
+        local xpos,ypos = mon.getCursorPos()
+
+		mon.write("[")
+		mon.setCursorPos(xpos+size-1, ypos)
+		mon.write("]")
+		fract = cur / max
+		len = math.ceil( (size-2) * fract)
+		start = xpos
+		for i = 1, len do
+			start = start + 1
+			mon.setCursorPos(start, ypos)
+			mon.write(char)
+		end
+end 
+
 function progressbar(size, cur, max, char)
         char = char or "#"
         local xpos,ypos = term.getCursorPos()
@@ -15,6 +32,13 @@ function progressbar(size, cur, max, char)
 		end
 end 
 
+monitor = peripheral.wrap("left")
+monitor.setBackgroundColor(colors.blue)
+monitor.setTextScale(0.5)
+monitor.clear()
+monitor.setCursorPost(4,2)
+monitor.write("jolangse inc systems monitor")
+
 rednet.open("top")
 
 rednet.send(183, "power")
@@ -25,12 +49,12 @@ os.sleep(1) -- Slow down, let it keep up...
 rednet.send(183, "powermax")
 id, pmax = rednet.receive(1)
 
-print("Main battery state:")
+monitor.write("Main battery state:")
 if plvl and pmax then
   pct = math.ceil(plvl * 100 / pmax)
-  local xpos,ypos = term.getCursorPos()
-  progressbar(20, plvl, pmax)
-  term.setCursorPos(xpos, ypos+21)
-  print(" " .. pct "%")
+  local xpos,ypos = monitor.getCursorPos()
+  mprogressbar(monitor, 20, plvl, pmax)
+  monitor.setCursorPos(xpos+21, ypos)
+  print(" " .. pct .. "%")
 end
 
