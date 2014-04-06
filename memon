@@ -1,0 +1,62 @@
+rednet.open("top")
+me = peripheral.wrap("bottom")
+ 
+limit = {}
+limit["potato"] = {}
+limit["potato"]["id"] = 392
+limit["potato"]["max"] = 2000
+limit["potato"]["controller"] = 178
+ 
+limit["carrot"] = {}
+limit["carrot"]["id"] = 391
+limit["carrot"]["max"] = 2000
+limit["carrot"]["controller"] = 179
+ 
+limit["wheat"] = {}
+limit["wheat"]["id"] = 296
+limit["wheat"]["max"] = 2000
+limit["wheat"]["controller"] = 177
+ 
+limit["leather"] = {}
+limit["leather"]["id"] = 334
+limit["leather"]["max"] = 1000
+limit["leather"]["controller"] = 182
+ 
+limit["wool"] = {}
+limit["wool"]["id"] = 35
+limit["wool"]["max"] = 2000
+limit["wool"]["controller"] = 180
+
+while true do
+
+  term.clear()
+  term.setCursorPos(1,1)
+  for item, data in pairs(limit) do
+    print("Processing " .. item)
+    local current = me.countOfItemType(limit[item]["id"],0)
+    local max = limit[item]["max"]
+    print("Has " .. current .. ", want " .. max)
+    if current < max then
+      print("Requesting production")
+        rednet.send(limit[item]["controller"], "run")
+    else
+      print("Stopping production")
+        rednet.send(limit[item]["controller"], "stop")
+    end
+  end
+  id, message = rednet.recieve(10)
+  power = me.getEnergyStored("foo")
+  powerMax = me.getMaxEnergyStored("foo")
+  pct = math.ceil(power * 100 / powerMax)
+  
+  if message == "power" then
+    rednet.send(id, power)
+  
+  elseif message == "powermax" then
+    rednet.send(id, powerMax)
+  
+  elseif message == "powerpct" then
+    rednet.send(id, pct)
+  
+  end 
+end
