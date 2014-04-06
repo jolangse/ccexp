@@ -31,6 +31,7 @@ while true do
 
   term.clear()
   term.setCursorPos(1,1)
+  print( os.getComputerID() )
   for item, data in pairs(limit) do
     print("Processing " .. item)
     local current = me.countOfItemType(limit[item]["id"],0)
@@ -60,11 +61,11 @@ while true do
 
   elseif message == "bytespct" then
     used = me.getTotalBytes() - me.getFreeBytes()
-	pct = used * 100 / me.getTotalBytes()
+	pct = math.ceil(used * 100 / me.getTotalBytes())
     rednet.send(id, pct)
 
   elseif message == "typespct" then
-	pct = me.getStoredItemTypes() * 100 / me.getTotalItemTypes()
+	pct = math.ceil(me.getStoredItemTypes() * 100 / me.getTotalItemTypes())
     rednet.send(id, pct)
 
   end 

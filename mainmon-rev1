@@ -48,105 +48,103 @@ monitor.write("jolangse inc systems monitor")
 
 rednet.open("top")
 
-rednet.send(183, "powerpct")
-id, pct = rednet.receive(1)
-print("Main battery is at " .. pct .. "%")
-monitor.setCursorPos(2,4)
-monitor.write("Main battery state:")
-monitor.setCursorPos(2,5)
-mprogressbar(monitor, 20, pct, 100)
-monitor.setCursorPos(23, 5)
-monitor.write(" " .. pct .. "%")
-
-rednet.send(176, "powerpct")
-id, pct = rednet.receive(1)
-print("Core battery is at " .. pct .. "%")
-monitor.setCursorPos(2,6)
-monitor.write("Core battery state:")
-monitor.setCursorPos(2,7)
-mprogressbar(monitor, 20, pct, 100)
-monitor.setCursorPos(23, 7)
-monitor.write(" " .. pct .. "%")
-
-rednet.send(175, "powerpct")
-id, pct = rednet.receive(1)
-print("Crafting battery is at " .. pct .. "%")
-monitor.setCursorPos(2,8)
-monitor.write("Crafting battery state:")
-monitor.setCursorPos(2,9)
-mprogressbar(monitor, 20, pct, 100)
-monitor.setCursorPos(23, 9)
-monitor.write(" " .. pct .. "%")
-
-rednet.send(174, "powerpct")
-id, pct = rednet.receive(1)
-print("ME Stored energy is at " .. pct .. "%")
-monitor.setCursorPos(2,10)
-monitor.write("ME power state:")
-monitor.setCursorPos(2,11)
-mprogressbar(monitor, 20, pct, 100)
-monitor.setCursorPos(23, 11)
-monitor.write(" " .. pct .. "%")
-
-rednet.send(174, "bytespct")
-id, pct = rednet.receive(1)
-print("ME Bytes used at " .. pct .. "%")
-monitor.setCursorPos(2,12)
-monitor.write("ME bytes used:")
-monitor.setCursorPos(2,13)
-mprogressbar(monitor, 20, pct, 100)
-monitor.setCursorPos(23, 11)
-monitor.write(" " .. pct .. "%")
-
-
-rednet.send(174, "typespct")
-id, pct = rednet.receive(1)
-print("ME types used at " .. pct .. "%")
-monitor.setCursorPos(2,14)
-monitor.write("ME types used:")
-monitor.setCursorPos(2,15)
-mprogressbar(monitor, 20, pct, 100)
-monitor.setCursorPos(23, 11)
-monitor.write(" " .. pct .. "%")
-
-rednet.send(179, "state")
-id,state = rednet.receive(1)
-monitor.setCursorPos(2, 17)
-if state ==1 then monitor.setBackgroundColor(colors.green) else monitor.setBackgroundColor(colors.red) end
-monitor.write(" Carrots ")
-monitor.setBackgroundColor(colors.blue)
-
-rednet.send(178, "state")
-id,state = rednet.receive(1)
-monitor.setCursorPos(12, 17)
-if state ==1 then monitor.setBackgroundColor(colors.green) else monitor.setBackgroundColor(colors.red) end
-monitor.write(" Potato  ")
-monitor.setBackgroundColor(colors.blue)
-
-rednet.send(177, "state")
-id,state = rednet.receive(1)
-monitor.setCursorPos(22, 17)
-if state ==1 then monitor.setBackgroundColor(colors.green) else monitor.setBackgroundColor(colors.red) end
-monitor.write(" Wheat   ")
-monitor.setBackgroundColor(colors.blue)
-
-rednet.send(182, "state")
-id,state = rednet.receive(1)
-monitor.setCursorPos(7, 18)
-if state ==1 then monitor.setBackgroundColor(colors.green) else monitor.setBackgroundColor(colors.red) end
-monitor.write(" Leather ")
-monitor.setBackgroundColor(colors.blue)
-
-rednet.send(180, "state")
-id,state = rednet.receive(1)
-monitor.setCursorPos(17, 18)
-if state ==1 then monitor.setBackgroundColor(colors.green) else monitor.setBackgroundColor(colors.red) end
-monitor.write(" Wool    ")
-monitor.setBackgroundColor(colors.blue)
-
-
--- limit["potato"]["controller"] = 178
--- limit["carrot"]["controller"] = 179
--- limit["wheat"]["controller"] = 177
--- limit["leather"]["controller"] = 182
--- limit["wool"]["controller"] = 180
+while true do
+  rednet.send(183, "powerpct")
+  id, pct = rednet.receive(1)
+  print("Main battery is at " .. pct .. "%")
+  monitor.setCursorPos(2,4)
+  monitor.write("Main battery state:")
+  monitor.setCursorPos(2,5)
+  mprogressbar(monitor, 20, pct, 100)
+  monitor.setCursorPos(23, 5)
+  monitor.write(" " .. pct .. "%    ")
+  
+  rednet.send(176, "powerpct")
+  id, pct = rednet.receive(1)
+  print("Core battery is at " .. pct .. "%")
+  monitor.setCursorPos(2,6)
+  monitor.write("Core battery state:")
+  monitor.setCursorPos(2,7)
+  mprogressbar(monitor, 20, pct, 100)
+  monitor.setCursorPos(23, 7)
+  monitor.write(" " .. pct .. "%    ")
+  
+  rednet.send(175, "powerpct")
+  id, pct = rednet.receive(1)
+  print("Crafting battery is at " .. pct .. "%")
+  monitor.setCursorPos(2,8)
+  monitor.write("Crafting battery state:")
+  monitor.setCursorPos(2,9)
+  mprogressbar(monitor, 20, pct, 100)
+  monitor.setCursorPos(23, 9)
+  monitor.write(" " .. pct .. "%    ")
+  
+  rednet.send(174, "powerpct")
+  id, pct = rednet.receive(1)
+  print("ME Stored energy is at " .. pct .. "%")
+  monitor.setCursorPos(2,10)
+  monitor.write("ME power state:")
+  monitor.setCursorPos(2,11)
+  mprogressbar(monitor, 20, pct, 100)
+  monitor.setCursorPos(23, 11)
+  monitor.write(" " .. pct .. "%    ")
+  
+  os.sleep(1)
+  rednet.send(174, "bytespct")
+  id, pct = rednet.receive(1)
+  print("ME Bytes used at " .. pct .. "%")
+  monitor.setCursorPos(2,12)
+  monitor.write("ME bytes used:")
+  monitor.setCursorPos(2,13)
+  mprogressbar(monitor, 20, pct, 100)
+  monitor.setCursorPos(23, 13)
+  monitor.write(" " .. pct .. "%    ")
+  
+  os.sleep(1)
+  rednet.send(174, "typespct")
+  id, pct = rednet.receive(1)
+  print("ME types used at " .. pct .. "%")
+  monitor.setCursorPos(2,14)
+  monitor.write("ME types used:")
+  monitor.setCursorPos(2,15)
+  mprogressbar(monitor, 20, pct, 100)
+  monitor.setCursorPos(23, 15)
+  monitor.write(" " .. pct .. "%    ")
+  
+  rednet.send(179, "state")
+  id,state = rednet.receive(1)
+  monitor.setCursorPos(2, 17)
+  if state ==1 then monitor.setBackgroundColor(colors.green) else monitor.setBackgroundColor(colors.red) end
+  monitor.write(" Carrots ")
+  monitor.setBackgroundColor(colors.blue)
+  
+  rednet.send(178, "state")
+  id,state = rednet.receive(1)
+  monitor.setCursorPos(12, 17)
+  if state ==1 then monitor.setBackgroundColor(colors.green) else monitor.setBackgroundColor(colors.red) end
+  monitor.write(" Potato  ")
+  monitor.setBackgroundColor(colors.blue)
+  
+  rednet.send(177, "state")
+  id,state = rednet.receive(1)
+  monitor.setCursorPos(22, 17)
+  if state ==1 then monitor.setBackgroundColor(colors.green) else monitor.setBackgroundColor(colors.red) end
+  monitor.write(" Wheat   ")
+  monitor.setBackgroundColor(colors.blue)
+  
+  rednet.send(182, "state")
+  id,state = rednet.receive(1)
+  monitor.setCursorPos(7, 18)
+  if state ==1 then monitor.setBackgroundColor(colors.green) else monitor.setBackgroundColor(colors.red) end
+  monitor.write(" Leather ")
+  monitor.setBackgroundColor(colors.blue)
+  
+  rednet.send(180, "state")
+  id,state = rednet.receive(1)
+  monitor.setCursorPos(17, 18)
+  if state ==1 then monitor.setBackgroundColor(colors.green) else monitor.setBackgroundColor(colors.red) end
+  monitor.write(" Wool    ")
+  monitor.setBackgroundColor(colors.blue)
+  
+  os.sleep(5)
+end
